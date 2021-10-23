@@ -1,0 +1,297 @@
+:root {
+
+    /* Dark Theme Colors:
+        --main-bg-color: #2d2d2d;
+        --darker-bg-color: #252525;
+        --slightly-darker-bg-color: #292828;
+        --main-text-color: #f5f5f5;
+        --lighter-text-color: #D3D3D3;
+        --link-text-color: rgb(51, 125, 255);
+        --link-hover-color: rgb(28, 109, 248);
+    */
+
+    /* Light Theme Colors: */
+    --main-bg-color: #e0e0e0;
+    --darker-bg-color: #D3D3D3;
+    --slightly-darker-bg-color: #dddcdc;
+    --main-text-color: #141414;
+    --lighter-text-color: #202020;
+    --link-text-color: rgb(51, 125, 255);
+    --link-hover-color: rgb(28, 109, 248);
+    /* */
+
+    /* Green / Team Color Theme:
+    --main-bg-color: #4D664D;
+    --darker-bg-color: #425842;
+    --slightly-darker-bg-color: #445c44;
+    --main-text-color: #f5f5f5;
+    --lighter-text-color: #D3D3D3;
+    --link-text-color: rgb(51, 125, 255);
+    --link-hover-color: rgb(28, 109, 248);
+    */
+
+    /* Blue Color Theme:
+    --main-bg-color: #0094FF;
+    --darker-bg-color: #007cd4;
+    --slightly-darker-bg-color: #0089eb;
+    --main-text-color: #f5f5f5;
+    --lighter-text-color: #e2e2e2;
+    --link-text-color: rgb(15, 75, 180);
+    --link-hover-color: rgb(8, 52, 129);
+    */
+    
+}
+
+html, body {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 100%;
+    overflow-x: hidden;
+}
+
+body {
+    min-width: 100vw;
+    position: relative;
+    background-color: var(--main-bg-color);
+    color: var(--main-text-color);
+    margin: 0;
+    padding: 0;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+}
+
+.mainHeader {
+    width: 100vw;
+    background-color: var(--darker-bg-color);
+    padding: 1.5rem;
+    margin: 0;
+    /* position: relative; */
+    display: inline-block;
+    text-align: center;
+    vertical-align: middle;
+}
+
+.mainHeader .teamLogo {
+    display: inline-block;
+    width: calc(5vw + 5vh);
+    height: auto;
+    vertical-align: middle;
+    margin-left: 5vw; 
+    margin-right: 5vw; 
+}
+
+.mainHeader .textTitle {
+    display: inline-block;
+    width: 50%;
+    position: relative;
+    vertical-align: middle;
+}
+
+.mainHeader .textTitle:after{
+    display: inline-block;
+    vertical-align: middle;
+}
+
+.mainHeader .mainTitle {
+    font-size: calc(2.5vh + 2.5vw);
+    margin-top: 0;
+    padding-top: 1.5vh;
+    margin-bottom: 0.5vh;
+    font-weight: bolder;
+}
+
+.headerLinks {
+    background-color: var(--slightly-darker-bg-color);
+    position: relative;
+    padding-left: 0;
+    padding-right: 0;
+    margin: 0;
+    margin-top: -5px;
+    padding-top: 4px;
+    padding-bottom: 5px;
+    display: table;
+    width: 100%;
+    table-layout: fixed;
+    text-align: left;
+    vertical-align: middle;
+    color: var(--main-text-color);
+}
+
+.headerLinks > .navItem {
+    display:table-cell;
+    text-align:center;
+}
+
+.headerLinks a, .headerLinks a:visited {
+    color: var(--lighter-text-color);
+    font-size: calc(0.9vh + 0.75vw);
+    text-decoration: underline;
+}
+
+.headerLinks a:hover {
+    color: var(--main-text-color);
+    font-size: calc(1vh + 0.85vw);
+}
+
+a.hideLink, a.hideLink:hover, a.hideLink:focus, a.hideLink:active {
+    text-decoration: none;
+    color: inherit;
+}
+
+a.betterLink {
+    color: var(--link-text-color);
+}
+
+a.betterLink:hover {
+    color: var(--link-hover-color);
+}
+
+#changeTheme {
+    display: none;
+}
+  
+#changeTheme:checked ~ .toggleTheme .sunIcon {
+    opacity: 0;
+    transform: translateX(-50px);
+}
+  
+#changeTheme:checked ~ .toggleTheme .moonIcon{
+    opacity: 1;
+    transform: translateX(0px);
+}
+
+.video_wrapper {
+    position: relative;
+    padding-bottom: 56.25%; /* 16:9, for an aspect ratio of 1:1 change to this value to 100% */ 
+}
+
+.video_wrapper iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+
+.toggleTheme {
+    background: rgba(1, 128, 128, 0.5);
+    height: 3rem;
+    width: 3rem;
+    padding: 5px;
+    display: flex;
+    display: -ms-flex-pack;
+    display: -ms-flexbox;
+    display: flexbox;
+    -ms-flex-pack: center;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    position: absolute;
+    left: 1vw;
+    top: 1vh;
+    overflow: hidden;
+}
+  
+.toggleTheme:hover,
+.toggeTheme:focus {
+    cursor: pointer;
+    transform: scale(1.1);
+}
+  
+.toggleTheme img {
+    font-size: 2rem;
+    position: absolute;
+}
+  
+.sunIcon {
+    transform: translateX(0);
+    z-index: 1000;
+    width: 3rem;
+    height: 3rem;
+}
+  
+.moonIcon {
+    transform: translateX(50px);
+    opacity: 0;
+    z-index: 1000;
+    width: 3rem;
+    height: 3rem;
+}
+
+.mainContent {
+    background-color: var(--slightly-darker-bg-color);
+    width: 50%;
+    min-width: 300px;
+    margin: 0 auto;
+    margin-top: 30px;
+    height: max-content;
+    padding: 20px;
+}
+
+.mainPage p {
+    font-size: calc(1vh + 0.75vw);
+}
+
+.mainFooter {
+    background-color: var(--slightly-darker-bg-color);
+    width: 75%;
+    margin: 0 auto;
+    margin-top: 30px;
+    height: max-content;
+    padding: 15px;
+}
+
+.socialMediaIcon {
+    width: 2.5vw;
+    min-width: 20px;
+    margin-left: 3vw;
+}
+
+.contentCard {
+    background-color: var(--darker-bg-color);
+    width: 90%;
+    min-width: 275px;
+    margin: 30px auto;
+    height: max-content;
+    padding: 20px;
+    text-align: center;
+    box-shadow: 0 2px 5px 0 rgba(0, 0, 0, .3);
+}
+
+.constrainedImage {
+    max-width: 100%;
+    height: auto;
+}
+
+#googleForm {
+    margin: 0 auto;
+    width: 35vw;
+    min-width: 275px;
+    height: 700px;
+}
+
+@media only screen and (max-width: 850px) {
+    #demoDazeLogo {
+        display: none;
+    }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+
+    .headerLinks {
+        animation: show 200ms ease-in;
+    }
+
+    .headerLinks a, .headerLinks a:visited {
+        transition: font-size 0.5s;
+    }
+
+    .toggleTheme {
+        transition: transform 0.5s ease;
+    }
+
+    .toggleTheme img {
+        transition: transform 0.5s ease, opacity 0.5s ease, color 0.5s ease;
+    }
+
+}
