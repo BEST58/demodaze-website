@@ -118,7 +118,7 @@ var mouse = Mouse.create(render.canvas),
             render: {
                 visible: false
             }
-        }
+        },
     });
 
 Composite.add(world, mouseConstraint);
@@ -126,9 +126,16 @@ Composite.add(world, mouseConstraint);
 Matter.Events.on(mouseConstraint, 'startdrag', function(event) {
     dragBody = event.body;
     if(dragBody.label == 'gamePiece') {
-
+        Matter.Body.setStatic(dragBody, true)
     }
 });
+
+Matter.Events.on(mouseConstraint, 'mouseup', function(event) {
+    if(dragBody && dragBody.label == 'gamePiece') {
+        Matter.Body.setStatic(dragBody, false)
+    }
+});
+
 
 // keep the mouse in sync with rendering
 render.mouse = mouse;
@@ -166,6 +173,10 @@ function update() {
     }
 
     window.requestAnimationFrame(update);
+}
+
+function reset() {
+
 }
 
 window.requestAnimationFrame(update);
