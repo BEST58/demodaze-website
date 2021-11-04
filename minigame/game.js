@@ -60,7 +60,14 @@ for (let c = 0; c < columns; c++) {
 Composite.add(world, [
     // walls
     Bodies.rectangle(gameWidth * 4/8, 0, gameWidth, 50, { isStatic: true }),
-    Bodies.rectangle(gameWidth * 45/80, 600, gameWidth * 28/80, 50, { isStatic: true }),
+    Bodies.rectangle(gameWidth * 45/80, 600, gameWidth * 28/80, 50, {
+        isStatic: true,
+        render: {
+            fillStyle: 'white',
+            strokeStyle: 'white',
+            lineWidth: 1
+        }
+    }),
     Bodies.rectangle(gameWidth, 300, 50, 600, { isStatic: true }),
     Bodies.rectangle(0, 300, 50, 600, { isStatic: true })
 ]);
