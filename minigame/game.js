@@ -159,7 +159,7 @@ function update() {
             // scored
             console.log("piece scored")
             rawScore += 1;
-            gameScore.innerHTML = "Game Score: "+rawScore
+            gameScore.innerHTML = "Game Score: "+rawScore + "/"+columns*rows+" ("+(rawScore/(columns*rows)*100).toFixed(2)+"%)"
             Composite.remove(world, element)
             towerBoxes.splice(i, 1)
             i--
@@ -175,8 +175,8 @@ function update() {
     window.requestAnimationFrame(update);
 }
 
-function reset() {
-
-}
-
 window.requestAnimationFrame(update);
+
+function reset() {
+    window.location.reload(false); 
+}
