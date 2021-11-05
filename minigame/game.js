@@ -3,6 +3,7 @@ var gameScore = document.getElementById('gameScore');
 var rawScore = 0;
 
 var gameWidth = document.getElementsByClassName('mainContent')[0].clientWidth - 60;
+if(gameWidth > 1200) gameWidth = 1200
 
 var Engine = Matter.Engine,
     Render = Matter.Render,
@@ -59,7 +60,7 @@ for (let c = 0; c < columns; c++) {
 
 Composite.add(world, [
     // walls
-    Bodies.rectangle(gameWidth * 4/8, 0, gameWidth, 50, { isStatic: true }),
+    // Bodies.rectangle(gameWidth * 4/8, 0, gameWidth, 50, { isStatic: true }),
     Bodies.rectangle(gameWidth * 45/80, 600, gameWidth * 28/80, 50, {
         isStatic: true,
         render: {
@@ -68,8 +69,16 @@ Composite.add(world, [
             lineWidth: 1
         }
     }),
-    Bodies.rectangle(gameWidth, 300, 50, 600, { isStatic: true }),
-    Bodies.rectangle(0, 300, 50, 600, { isStatic: true })
+    Bodies.rectangle(gameWidth * 22/80, 575, gameWidth * 5/80, 50, {
+        isStatic: true,
+        render: {
+            fillStyle: 'white',
+            strokeStyle: 'white',
+            lineWidth: 1
+        }
+    })
+    // Bodies.rectangle(gameWidth, 300, 50, 600, { isStatic: true }),
+    // Bodies.rectangle(0, 300, 50, 600, { isStatic: true })
 ]);
 
 var ball = Bodies.circle(gameWidth * 3/8, 500, gameWidth * 5/80, {
@@ -81,7 +90,7 @@ var ball = Bodies.circle(gameWidth * 3/8, 500, gameWidth * 5/80, {
         lineWidth: 3
     }
 });
-var score = Bodies.rectangle(gameWidth * 7/9, 600, gameWidth * 5/80, 50, {
+var trashPile = Bodies.rectangle(gameWidth * 67/80, 600, gameWidth * 5/80, 50, {
     isStatic: true,
     isSensor: true,
     render: {
@@ -90,7 +99,18 @@ var score = Bodies.rectangle(gameWidth * 7/9, 600, gameWidth * 5/80, 50, {
     }
 });
 
-Composite.add(world, score);
+var recycleBin = Bodies.rectangle(gameWidth * 22/80, 550, gameWidth * 5/80, 25, {
+    isStatic: true,
+    isSensor: true,
+    render: {
+        strokeStyle: 'green',
+        lineWidth: 3
+    }
+});
+
+Composite.add(world, trashPile);
+Composite.add(world, recycleBin);
+
 Composite.add(world, ball);
 Composite.add(world, Constraint.create({
     pointA: { x: gameWidth * 3/8, y: 100 },
@@ -153,8 +173,11 @@ Render.lookAt(render, {
     max: { x: gameWidth, y: 600 }
 });
 
-let scoringPieceX = score.position.x
-let scoringPieceY = score.position.y
+let trashPileScoringPieceX = trashPile.position.x
+let trashPileScoringPieceY = trashPile.position.y
+
+let recycleBinScoringPieceX = recycleBin.position.x
+let recycleBinScoringPieceY = recycleBin.position.y
 
 function update() {
     
@@ -162,15 +185,23 @@ function update() {
 
     for (let i = 0; i < towerBoxes.length; i++) {
         const element = towerBoxes[i];
-        if(Math.abs(element.position.x - scoringPieceX) < 40 && Math.abs(element.position.y - scoringPieceY) < 30) {
-            // scored
-            console.log("piece scored")
-            rawScore += 1;
-            gameScore.innerHTML = "Game Score: "+rawScore + "/"+columns*rows+" ("+(rawScore/(columns*rows)*100).toFixed(2)+"%)"
+        if(Math.abs(element.position.x - trashPileScoringPieceX) < 40 && Math.abs(element.position.y - trashPileScoringPieceY) < 30) {
+            // scored in trash pile
+            console.log("piece scored in trash pile")
+            rawScore += 2;
+            gameScore.innerHTML = "Game Score: "+rawScore
             Composite.remove(world, element)
             towerBoxes.splice(i, 1)
             i--
-        } else if(element.position.y > 640) {
+        } else if(Math.abs(element.position.x - recycleBinScoringPieceX) < 40 && Math.abs(element.position.y - recycleBinScoringPieceY) < 30) {
+            // scored in recycle bin
+            console.log("piece scored in recycle bin")
+            rawScore += 5;
+            gameScore.innerHTML = "Game Score: "+rawScore
+            Composite.remove(world, element)
+            towerBoxes.splice(i, 1)
+        }
+        else if(element.position.y > 640) {
             // off screen
             console.log("piece lost")
             Composite.remove(world, element)
