@@ -298,6 +298,21 @@ a.betterLink:hover {
     }
 }
 
+@media only screen and (max-width: 650px) {
+    .toggleTheme {
+        height: 1.5rem;
+        width: 1.5rem;
+    }
+    .sunIcon {
+        height: 1.5rem;
+        width: 1.5rem;
+    }
+    .moonIcon {
+        height: 1.5rem;
+        width: 1.5rem;
+    }
+}
+
 @media (prefers-reduced-motion: no-preference) {
 
     .fade-in {
