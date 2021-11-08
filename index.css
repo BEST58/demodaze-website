@@ -284,6 +284,14 @@ a.betterLink:hover {
     height: 30px;
 }
 
+.fade-in {
+    opacity: 0;
+}
+
+.fade-in.appear {
+    opacity: 1;
+}
+
 @media only screen and (max-width: 850px) {
     #demoDazeLogo {
         display: none;
@@ -291,6 +299,10 @@ a.betterLink:hover {
 }
 
 @media (prefers-reduced-motion: no-preference) {
+
+    .fade-in {
+        transition: opacity 350ms ease-in;
+    }
 
     .headerLinks {
         animation: show 200ms ease-in;
