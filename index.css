@@ -263,6 +263,11 @@ a.betterLink:hover {
     height: auto;
 }
 
+.constrainedImage2 {
+    max-width: 75%;
+    height: auto;
+}
+
 #googleForm {
     margin: 0 auto;
     width: 35vw;
