@@ -1,7 +1,7 @@
 <div id="top"></div>
 <div align="center">
   <a href="https://www.bestrobotics.org/site/">
-    <img src="images/BESTDemoDaze_Logo.png" alt="DemoDaze Logo" width="300" height="auto">
+    <img src="images/BESTDemoDaze_Logo.png" alt="DemoDaze Logo" width="600" height="auto">
   </a>
   </br>
   <a href="https://github.com/BEST58/demodaze-website">
